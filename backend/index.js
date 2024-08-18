@@ -29,8 +29,17 @@ const connectDB=async()=>{
 dotenv.config()
 app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
-app.use(cors({origin:"https://blog-website-3wn8k0ok2-ashish-joshis-projects-cbcd5ed0.vercel.app",credentials:true}))
-app.options('*', cors(corsOptions)); 
+const corsOptions = {
+    origin: 'https://blog-website-murex-tau.vercel.app', // Replace with your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow the necessary HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    credentials: true // Allow cookies and other credentials
+};
+
+app.use(cors(corsOptions));
+
+// Enable pre-flight across the board
+app.options('*', cors(corsOptions));
 
 app.use(cookieParser())
 app.use("/api/auth",authRoute)
