@@ -6,6 +6,17 @@ const jwt=require('jsonwebtoken')
 
 
 //REGISTER
+const corsOptions = {
+    origin: 'https://blog-website-murex-tau.vercel.app', // Replace with your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow the necessary HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    credentials: true // Allow cookies and other credentials
+};
+
+router.use(cors(corsOptions));
+
+// Enable pre-flight across the board
+router.options('*', cors(corsOptions));
 router.post("/register",async(req,res)=>{
     try{
         const {username,email,password}=req.body
