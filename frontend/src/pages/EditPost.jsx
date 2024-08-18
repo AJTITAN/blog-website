@@ -17,7 +17,7 @@ const EditPost = () => {
     const [desc,setDesc]=useState("")
     const [file,setFile]=useState(null)
     const [cat,setCat]=useState("")
-    const [cats,setCats]=useState([])
+    const [cats,setCats]=useState([]) 
 
     const fetchPost=async()=>{
       try{
