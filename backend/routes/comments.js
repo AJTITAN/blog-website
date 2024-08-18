@@ -7,6 +7,17 @@ const Comment=require('../models/Comment')
 const verifyToken = require('../verifyToken')
 
 //CREATE
+const corsOptions = {
+    origin: 'https://blog-website-murex-tau.vercel.app', // Replace with your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow the necessary HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    credentials: true // Allow cookies and other credentials
+};
+
+router.use(cors(corsOptions));
+
+// Enable pre-flight across the board
+router.options('*', cors(corsOptions));
 router.post("/create",verifyToken,async (req,res)=>{
     try{
         const newComment=new Comment(req.body)
