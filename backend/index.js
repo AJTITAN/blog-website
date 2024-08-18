@@ -29,13 +29,15 @@ const connectDB=async()=>{
 dotenv.config()
 app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
-app.use(cors({origin:"http://localhost:5173",credentials:true}))
+app.use(cors({origin:"https://blog-website-3wn8k0ok2-ashish-joshis-projects-cbcd5ed0.vercel.app",credentials:true}))
 app.use(cookieParser())
 app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
 app.use("/api/posts",postRoute)
 app.use("/api/comments",commentRoute)
-
+app.get("/", (req, res) => {
+    res.json("Hello");
+})
 //image upload
 const storage=multer.diskStorage({
     destination:(req,file,fn)=>{
