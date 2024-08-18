@@ -30,6 +30,8 @@ dotenv.config()
 app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
 app.use(cors({origin:"https://blog-website-3wn8k0ok2-ashish-joshis-projects-cbcd5ed0.vercel.app",credentials:true}))
+app.options('*', cors(corsOptions)); 
+
 app.use(cookieParser())
 app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
